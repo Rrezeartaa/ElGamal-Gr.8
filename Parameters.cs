@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 
 namespace ElGamal
 {
-    public class Parameters
+    public abstract class Parameters : AsymmetricAlgorithm
     {
          [Serializable]
         public struct ElGamalParameters
@@ -14,5 +14,8 @@ namespace ElGamal
             [NonSerialized] public byte[] X;
         } 
         
+        //Metoda: Import ElGamalParameters
+        public abstract void ImportParameters(ElGamalParameters import_parameters);
+       
     }
 }
