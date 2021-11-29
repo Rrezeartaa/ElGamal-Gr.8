@@ -2,24 +2,24 @@ using System;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace ElGamalKeyExchange
+namespace ElGamal_Gr._8
 {
     public class ElGamalOAEPKeyExchangeDeformatter : AsymmetricKeyExchangeDeformatter
     {
-        private ElGamalManaged o_algorithm;
+        private ElGamalManagement o_algorithm;
         private PKCS1MaskGenerationMethod o_mask_generator;
 
         public ElGamalOAEPKeyExchangeDeformatter()
         {
-            o_algorithm = new ElGamalManaged();
+            o_algorithm = new ElGamalManagement();
             o_mask_generator = new PKCS1MaskGenerationMethod();
         }
 
         public override void SetKey(AsymmetricAlgorithm p_key)
         {
-            if (p_key is ElGamal)
+            if (p_key is Parameters)
             {
-                o_algorithm.ImportParameters(((ElGamal)p_key).ExportParameters(true));
+                o_algorithm.ImportParameters(((Parameters)p_key).ExportParameters(true));
             }
             else
             {

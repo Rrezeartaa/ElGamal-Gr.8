@@ -2,17 +2,17 @@ using System;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace ElGamalKeyExchange
+namespace ElGamal_Gr._8
 {
     public class ElGamalOAEPKeyExchangeFormatter : AsymmetricKeyExchangeFormatter
     {
-        private ElGamalManaged o_algorithm;
+        private ElGamalManagement o_algorithm;
         private Random o_random;
         private PKCS1MaskGenerationMethod o_mask_generator;
         public ElGamalOAEPKeyExchangeFormatter()
         {
-            //krijn instancen e algoritmit
-            o_algorithm = new ElGamalManaged();
+            //krijon instancen e algoritmit
+            o_algorithm = new ElGamalManagement();
             //inicializon random
             o_random = new Random();
             //inicializon mask generator 
@@ -29,9 +29,9 @@ namespace ElGamalKeyExchange
         public override void SetKey(AsymmetricAlgorithm p_key)
         {
             //siguron qe kemi te bejme me algoritem ElGamal
-            if (p_key is ElGamal)
+            if (p_key is Parameters)
             {
-                o_algorithm.ImportParameters(((ElGamal)p_key).ExportParameters(false));
+                o_algorithm.ImportParameters(((Parameters)p_key).ExportParameters(false));
             }
             else
             {

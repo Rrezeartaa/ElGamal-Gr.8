@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace ElGamal
+namespace ElGamal_Gr._8
 {
     // Klasa e cila perdoret per bazat ENC/DEC dhe per te ndare te dhenat ne blloqe
 

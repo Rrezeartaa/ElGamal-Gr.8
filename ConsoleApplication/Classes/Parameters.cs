@@ -4,7 +4,7 @@ using System.Text;
 using System.Xml;
 using System.Security.Cryptography;
 
-namespace ElGamal
+namespace ElGamal_Gr._8
 {
     public abstract class Parameters : AsymmetricAlgorithm
     {
@@ -17,14 +17,15 @@ namespace ElGamal
             [NonSerialized] public byte[] X;
         } 
         
-        //Metoda: Import ElGamalParameters
         public abstract void ImportParameters(ElGamalParameters import_parameters);
        
-        //Metoda: Export ElGamalParameters
         public abstract ElGamalParameters ExportParameters(bool export_parameters);
 
-        // public abstract byte[] EncryptData(byte[] _data);
-        // public abstract byte[] DecryptData(byte[] _data);
+        public abstract byte[] EncryptData(byte[] _data);
+        public abstract byte[] DecryptData(byte[] _data);
+
+        public abstract byte[] Sign(byte[] p_hashcode);
+        public abstract bool VerifySignature(byte[] p_hashcode, byte[] p_signature);
 
         public override string ToXmlString(bool _private)
         {
@@ -45,6 +46,7 @@ namespace ElGamal
                 string_builder.Append("<X>  " + Convert.ToBase64String(elgamal_params.X) + "  </X>\n\n");
             }
             string_builder.Append("</s--------------------KeyValues--------------------------------s>");
+
             return string_builder.ToString();
         }
 

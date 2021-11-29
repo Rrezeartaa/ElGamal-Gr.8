@@ -1,7 +1,7 @@
 using System;
 using System.Security.Cryptography;
 
-namespace ElGamal
+namespace ElGamal_Gr._8
 {
     public class ElGamalManagement : Parameters
     {
@@ -31,6 +31,22 @@ namespace ElGamal
 
             // rangu i celesave
             LegalKeySizesValue = new[] { new KeySizes(384, 1088, 8) };
+        }
+
+         public override string SignatureAlgorithm
+        {
+            get
+            {
+                return "ElGamal";
+            }
+        }
+
+        public override string KeyExchangeAlgorithm
+        {
+            get
+            {
+                return "ElGamal";
+            }
         }
 
         private void CreateKeyPair(int key_strength)
@@ -117,15 +133,37 @@ namespace ElGamal
             return elgamal_params;
         }
 
-        // public override byte[] EncryptData(byte[] data)
-        // {
-            
-        // }
+        public override byte[] EncryptData(byte[] data)
+        {
+            if (NeedToGenerateKey())
+            {
+                // krijimi i nje celesi te ri para se me eksportu 
+                CreateKeyPair(KeySizeValue);
+            }
+            // enkriptimi i te dhenave
+            ElGamalEncrypt encrypt_data = new ElGamalEncrypt(current_key);
+            return encrypt_data.ProcessData(data);
+        }
 
-        // public override byte[] DecryptData(byte[] p_data)
-        // {
-
-        // }
+        public override byte[] DecryptData(byte[] p_data)
+        {
+            if (NeedToGenerateKey())
+            {
+                // krijimi i nje celesi te ri para se me eksportu 
+                CreateKeyPair(KeySizeValue);
+            }
+            // dekriptimi i te dhenave
+            ElGamalDecrypt decrypt_data = new ElGamalDecrypt(current_key);
+            return decrypt_data.ProcessData(p_data);
+        }
+        public override byte[] Sign(byte[] p_hashcode)
+        {
+            throw new System.NotImplementedException();
+        }
+        public override bool VerifySignature(byte[] p_hashcode, byte[] p_signature)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
 }
