@@ -57,7 +57,7 @@ namespace ElGamal_Gr._8
             current_key.X = new BigInteger();
             current_key.G = new BigInteger();
 
-            // krijimi i numrit prim P
+            // krijimi i numrit prime P
             current_key.P = BigInteger.genPseudoPrime(key_strength, 16, random_number);
 
             // krijimi i dy numrave random, qe jane me te vegjel se P 

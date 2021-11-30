@@ -1,8 +1,294 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<style>
+    .vertical-nav {
+        min-width: 17rem;
+        width: 17rem;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin-left: 100px;
+        margin-top: 50px;
+        padding: 20px;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s;
+        background-color: #563D7C;
+        color: white;
+    }
+    .nav-link {
+        color: gray;
+        font-weight: bold;
+    }
+    .timeline {
+        position: relative;
+        width: 660px;
+        margin: 0 auto;
+        margin-top: 20px;
+        padding: 1em 0;
+        list-style-type: none;
+    }
+        .timeline:before {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            content: ' ';
+            display: block;
+            width: 6px;
+            height: 100%;
+            margin-left: -3px;
+            background-color: #123456;
+            background: linear-gradient(to bottom, #123456 0%, #123456 8%, #123456 92%, #123456 100%);
+            z-index: 5;
+        }
+        .timeline li {
+            padding: 1em 0;
+        }
+            .timeline li:after {
+                content: "";
+                display: block;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+            }
+    .direction-l {
+        position: relative;
+        width: 300px;
+        float: left;
+        text-align: right;
+    }
+    .direction-r {
+        position: relative;
+        width: 300px;
+        float: right;
+    }
+    .flag-wrapper {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+    }
+    .flag {
+        position: relative;
+        display: inline;
+        background-color : '#123456';
+        padding: 6px 10px;
+        border-radius: 5px;
+        font-weight: 600;
+        text-align: left;
+    }
+    .direction-l .flag {
+        box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
+    }
+    .direction-r .flag {
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
+    }
+        .direction-l .flag:before,
+        .direction-r .flag:before {
+            position: absolute;
+            top: 50%;
+            right: -40px;
+            content: ' ';
+            display: block;
+            width: 12px;
+            height: 12px;
+            margin-top: -10px;
+            background: #fff;
+            border-radius: 10px;
+            border: 4px solid #563D7C;
+            z-index: 10;
+        }
+        .direction-r .flag:before {
+            left: -40px;
+        }
+    .direction-l .flag:after {
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        height: 0;
+        width: 0;
+        margin-top: -8px;
+        border: solid transparent;
+        border-left-color: #123456
+        border-width: 8px;
+        pointer-events: none;
+    }
+    .direction-r .flag:after {
+        content: "";
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        height: 0;
+        width: 0;
+        margin-top: -8px;
+        border: solid transparent;
+        border-right-color: #123456
+        border-width: 8px;
+        pointer-events: none;
+    }
+    .time-wrapper {
+        display: inline;
+        line-height: 1em;
+        font-size: 0.8em;
+        color: white;
+        vertical-align: middle;
+    }
+    .direction-l .time-wrapper {
+        float: left;
+    }
+    .direction-r .time-wrapper {
+        float: right;
+    }
+    .time {
+        display: inline-block;
+        padding: 4px 6px;
+        background: #123456;
+    }
+    .desc {
+        margin: 1em 0.75em 0 0;
+        color: black;
+        font-size: 0.77777em;
+        font-style: italic;
+        line-height: 1.5em;
+    }
+    .direction-r .desc {
+        margin: 1em 0 0 0.75em;
+    }
+    .wall {
+        width: 100%;
+        height: 20vh;
+        border-radius: 5px;
+    }
+    .jumbo {
+        background-image: url(https://news.sophos.com/wp-content/uploads/2018/04/shutterstock_591206291.jpg?w=640);
+        background-size: cover;
+        color: white;
+    }
+    .jumbo2 {
+        background-color: #4863A0;
+        color: white;
+    }
+    .active{
+        background-color: white;
+    }
+        .active a {
+            color: steelblue;
+        }
+</style>
+<body>
+    <div class="flex items-center">
+        <div>
+            <div class="jumbotron jumbo">
+                <h1>ElGamal KeyExchange</h1>
+                <h4>Zgjerimi i klaseve të .NET Framework për mundësimin e shkëmbimit të çelësave sipas ElGamal</h4>
+                <p><a href="#" class="btn btn-primary btn-lg" target="_blank">Learn more &raquo;</a></p>
+            </div>
+
+            <h2 class="text-center" id="history">Characteristics</h2>
+            <ul class="timeline">
+                <li>
+                    <div class="direction-r">
+                        <div class="flag-wrapper">
+                            <span class="flag">Test 1</span>
+                        </div>
+                        <div class="desc">
+                            Test 1 content
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="direction-l">
+                        <div class="flag-wrapper">
+                            <span class="flag">Test 2</span>
+                        </div>
+                        <div class="desc">
+                            Test 2 content
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="direction-r">
+                        <div class="flag-wrapper">
+                            <span class="flag">Test 3</span>
+                        </div>
+                        <div class="desc">
+                            Test 3 content
+                        </div>
+                    </div>
+                </li>
+               
+            </ul>
+
+            <h2 class="text-center mt-4" id="howItWorks">Si punon</h2>
+            <p>
+                Test
+            </p>
+            <ul>
+                
+            </ul>
+            <p>
+               Test
+            </p>
+            
+
+            <div class="jumbotron jumbo">
+                <h2 class="text-center">DEVELOPMENT</h2>
+            </div>
+
+            <h2 class="text-center mb-4" id="classes">.NET Classes</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>ElGamalCipher Class</h3>
+                    <p>
+                        Test
+                    </p>
+                    @* <p><a class="btn btn-default" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.aes?view=net-5.0" target="_blank">Learn more &raquo;</a></p> *@
+                </div>
+                <div class="col-md-3">
+                    <h3>ElGamalDecrypt Class</h3>
+                    <p>Test</p>
+                    @* <p><a class="btn btn-default" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.hashalgorithm?view=net-5.0" target="_blank">Learn more &raquo;</a></p> *@
+                </div>
+                <div class="col-md-3">
+                    <h3>ElGamalEncrypt Class</h3>
+                    <p>Test</p>
+                    @* <p><a class="btn btn-default" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.cryptostream?view=net-5.0" target="_blank">Learn more &raquo;</a></p> *@
+                </div>
+                <div class="col-md-3">
+                    <h3>ElGamalManagement Class</h3>
+                    <p>Test</p>
+                    @* <p><a class="btn btn-default" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.cryptostream?view=net-5.0" target="_blank">Learn more &raquo;</a></p> *@
+                </div>
+                <div class="col-md-3">
+                    <h3>Parameters Class</h3>
+                    <p>Test</p>
+                    @* <p><a class="btn btn-default" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.cryptostream?view=net-5.0" target="_blank">Learn more &raquo;</a></p> *@
+                </div>
+                <div class="col-md-3">
+                    <h3>ElGamalOAEP KeyExchange Deformatter Class</h3>
+                    <p>Test</p>
+                    @* <p><a class="btn btn-default" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.cryptostream?view=net-5.0" target="_blank">Learn more &raquo;</a></p> *@
+                </div>
+                <div class="col-md-3">
+                    <h3>ElGamalOAEP KeyExchange Formatter Class</h3>
+                    <p>Test</p>
+                    @* <p><a class="btn btn-default" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.cryptostream?view=net-5.0" target="_blank">Learn more &raquo;</a></p> *@
+                </div>
+            </div>
+
+            <h2 class="text-center mt-4" id="project">Projekti ynë</h2>
+            <p>
+                ElGamal
+            </p>
+            <div class="jumbotron jumbo2">
+
+            </div>
+            <div class="jumbotron jumbo2">
+                
+            </div>
+
+        </div>
+    </div>
+</body>
