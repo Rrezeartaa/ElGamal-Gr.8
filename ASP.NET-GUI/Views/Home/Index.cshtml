@@ -183,98 +183,154 @@
             <div class="jumbotron jumbo">
                 <h1>ElGamal KeyExchange</h1>
                 <h4>Zgjerimi i klaseve të .NET Framework për mundësimin e shkëmbimit të çelësave sipas ElGamal</h4>
-                <p><a href="#" class="btn btn-primary btn-lg" target="_blank">Learn more &raquo;</a></p>
+                <p><a href="https://www.commonlounge.com/discussion/2be4d294aa9e44d4b67f6644cd9b5ced" class="btn btn-primary btn-lg" target="_blank">Learn more &raquo;</a></p>
             </div>
 
-            <h2 class="text-center" id="history">Characteristics</h2>
+            <h2 class="text-center" id="history">Karakteristikat kryesore</h2>
             <ul class="timeline">
                 <li>
                     <div class="direction-r">
                         <div class="flag-wrapper">
-                            <span class="flag">Test 1</span>
+                            <span class="flag">Siguria</span>
                         </div>
                         <div class="desc">
-                            Test 1 content
+                            Siguria e skemës së ElGamal varet nga vetitë e grupit G si dhe nga çfarëdo skeme e
+                             padding që përdoret në mesazhe.
                         </div>
                     </div>
                 </li>
                 <li>
                     <div class="direction-l">
                         <div class="flag-wrapper">
-                            <span class="flag">Test 2</span>
+                            <span class="flag">Efiçienca</span>
                         </div>
                         <div class="desc">
-                            Test 2 content
+                            Enkriptimi me ElGamal është probabilistik, që do të thotë se një një plaintext i vetëm mund 
+                            të enkriptohet si shumë ciphertexts, me konsekuencën që një enkriptim gjeneral i ElGamal prodhon 
+                            një zgjerim në madhësi në proporcion 1:2 nga plaintext në ciphertext.
                         </div>
                     </div>
                 </li>
-                <li>
-                    <div class="direction-r">
-                        <div class="flag-wrapper">
-                            <span class="flag">Test 3</span>
-                        </div>
-                        <div class="desc">
-                            Test 3 content
-                        </div>
-                    </div>
-                </li>
-               
             </ul>
 
-            <h2 class="text-center mt-4" id="howItWorks">Si punon</h2>
+            <h2 class="text-center mt-4" id="howItWorks">Gjenerimi i çelësit</h2>
             <p>
-                Test
+               Së pari Alice gjeneron çiftin e çelësave si në vijim:
             </p>
             <ul>
-                
+                <li>
+                    Gjeneron një përshkrim efiçient të grupit ciklik G, të rendit q me gjenerator g. e reprezenton njësinë elementare të G.
+                </li>
+                <li>
+                    Zgjedh një random integjer x nga {1,...,q-1}
+                </li>
+                <li>
+                    Llogarit h:=g^x
+                </li>
+                <li>
+                    Çelësi publik përmban vlerat (G,q,g,h). Alice publikon çelësin publik dhe i mbetet x si çelësi privat i saj 
+                    , i cili duhet të mbahet sekret.
+                </li>
+            </ul>
+
+            <h2 class="text-center mt-4" id="howItWorks">Enkriptimi dhe dekriptimi</h2>
+
+            <p>
+                Bob, enkripton mesazhin M tek Alice me çelësin e saj publik (G,q,g,h) si vijon:          
+            </p>
+            <ul>
+                <li>
+                    Mapon mesazhin M tek një element m i G duke përdorur një funksion mapues të kthyeshëm.
+                </li>
+                <li>
+                    Zgjedh një random integjer y nga {1,...,q-1}.
+                </li>
+                <li>
+                    Llogarit s:= h^y. Kjo quhet <em>shared secret.</em>
+                </li>
+                <li>
+                    Llogarit c1:= g^y.
+                </li>
+                <li>
+                    Llogarit c2:= m x s
+                </li>
+                <li>
+                    Bobi dërgon ciphertext-in (c1, c2) tek Alice.
+                </li>
             </ul>
             <p>
-               Test
+                Nëse njëri nga të dy e dinë edhe ciphertext-in (c1, c2) edhe plaintext-in m, njëri mundet lehtë të gjej <em>shared secret s</em> 
+                përderisa c2 x m^-1 = s.
             </p>
-            
+            <p>
+                Alice dekripton ciphertext-in (c1, c2) me çelësin e saj privat x si vijon:
+            </p>
+            <ul>
+                <li>
+                    Llogarit s:=c1^x. Përderisa c1=g^y, c1^x = g^(xy) = h^y, dhe kështu është i njëjti <em>shared secret</em> 
+                    që është përdorur nga Bobi për enkriptim.
+                </li>
+                <li>
+                    Llogarit s^-1, inversin e s në grupin G.
+                </li>
+                 <li>
+                    Llogarit m:=c2 x s^-1. Kjo llogaritje jep mesazhin origjinal m, sepse c2 = m x s; prandaj c2 x s^-1 = (m x s) x s^-1 = m x e = m.
+                </li>
+                 <li>
+                    Mapon m prapa te plaintext-i M.
+                </li>
+            </ul>
 
             <div class="jumbotron jumbo">
-                <h2 class="text-center">DEVELOPMENT</h2>
+                <h2 class="text-center">Implementimi i kodit</h2>
             </div>
 
-            <h2 class="text-center mb-4" id="classes">.NET Classes</h2>
+            <h2 class="text-center mb-4" id="classes">Klasat .NET</h2>
             <div class="row">
                 <div class="col-md-3">
                     <h3>ElGamalCipher Class</h3>
                     <p>
-                        Test
+                        Në këtë klasë bëhet vendosja e detajeve të çelësit, llogaritja e madhësisë së blloqeve dhe 
+                        procesimi i tyre.
                     </p>
-                    @* <p><a class="btn btn-default" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.aes?view=net-5.0" target="_blank">Learn more &raquo;</a></p> *@
-                </div>
-                <div class="col-md-3">
-                    <h3>ElGamalDecrypt Class</h3>
-                    <p>Test</p>
-                    @* <p><a class="btn btn-default" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.hashalgorithm?view=net-5.0" target="_blank">Learn more &raquo;</a></p> *@
                 </div>
                 <div class="col-md-3">
                     <h3>ElGamalEncrypt Class</h3>
-                    <p>Test</p>
-                    @* <p><a class="btn btn-default" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.cryptostream?view=net-5.0" target="_blank">Learn more &raquo;</a></p> *@
+                    <p>
+                        Në këtë klasë janë të implementuara metodat që ndihmojnë për enkriptimin e plaintext-it
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <h3>ElGamalDecrypt Class</h3>
+                    <p>
+                        Në këtë klasë janë të implementuara metodat që ndihmojnë për dekriptimin e ciphertext-it
+                    </p>
                 </div>
                 <div class="col-md-3">
                     <h3>ElGamalManagement Class</h3>
-                    <p>Test</p>
-                    @* <p><a class="btn btn-default" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.cryptostream?view=net-5.0" target="_blank">Learn more &raquo;</a></p> *@
+                    <p>
+                        Në këtë klasë bëhet gjenerimi i çiftit të çelësave, eksportimi dhe importimi i paramterave si dhe thirren 
+                        klasat për enkriptimin dhe dekriptim në metodat përkatëse të tyre.
+                    </p>
                 </div>
                 <div class="col-md-3">
                     <h3>Parameters Class</h3>
-                    <p>Test</p>
-                    @* <p><a class="btn btn-default" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.cryptostream?view=net-5.0" target="_blank">Learn more &raquo;</a></p> *@
-                </div>
-                <div class="col-md-3">
-                    <h3>ElGamalOAEP KeyExchange Deformatter Class</h3>
-                    <p>Test</p>
-                    @* <p><a class="btn btn-default" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.cryptostream?view=net-5.0" target="_blank">Learn more &raquo;</a></p> *@
+                    <p>
+                        Në këtë klasë bëhet krijimi i parametrave si dhe shndërrimi në XML string i tyre.
+                    </p>
                 </div>
                 <div class="col-md-3">
                     <h3>ElGamalOAEP KeyExchange Formatter Class</h3>
-                    <p>Test</p>
-                    @* <p><a class="btn btn-default" href="https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.cryptostream?view=net-5.0" target="_blank">Learn more &raquo;</a></p> *@
+                    <p>
+                        Në këtë klasë përfshihen metodat për specifikimin e instancës së algoritmit ElGamal, për formatimin e session 
+                        key dhe enkripitimin e rezultatit si dhe për formatimin OAEP. 
+                    </p>
+                </div>
+                 <div class="col-md-3">
+                    <h3>ElGamalOAEP KeyExchange Deformatter Class</h3>
+                    <p>
+                        Kjo klasë bën dekriptimin e të dhënave të shkëmbyera (exchange data).
+                    </p>
                 </div>
             </div>
 

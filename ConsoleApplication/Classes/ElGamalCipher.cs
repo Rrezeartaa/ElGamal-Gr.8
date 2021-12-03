@@ -6,7 +6,6 @@ using System.Text;
 namespace ElGamal_Gr._8
 {
     // Klasa e cila perdoret per bazat ENC/DEC dhe per te ndare te dhenat ne blloqe
-
     public abstract class ElGamalCipher : ElGamalManagement
     {
         protected int block_size;
