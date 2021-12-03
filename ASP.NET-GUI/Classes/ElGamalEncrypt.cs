@@ -1,6 +1,6 @@
 using System;
 
-namespace ConsoleApplication.Classes
+namespace ASP.NET_GUI.Classes
 {
     public class ElGamalEncrypt : ElGamalCipher
     {

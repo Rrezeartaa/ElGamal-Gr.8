@@ -1,0 +1,51 @@
+@{
+    ViewBag.Title = "Dekriptimi";
+}
+<style>
+   
+    .jumbo {
+        background-image: url(https://news.sophos.com/wp-content/uploads/2018/04/shutterstock_591206291.jpg?w=640);
+        background-size: cover;
+        color: white;
+        height:46px;
+        border-radius:10px;
+    }
+   
+</style>
+<div class="container-fluid">
+    <div class="jumbo">
+        <h1 class="text-center">@ViewBag.Title</h1>
+    </div> <br/>
+    <form action="Decryption" method="post">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="ciphertext">Ciphertext</label>
+                    <textarea class="form-control" id="ciphertext" name="ciphertext" rows="3" aria-describedby="cipherError">
+</textarea>
+                    <small id="cipherError" style="color:darkred">
+                        @if (Model != null)
+                        {
+                            @Model.cipherError
+                        }
+                    </small>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                @if (Model != null && @Model.plaintext != null)
+                {
+                    <label for="plaintext">Plaintext</label>
+                    <h5 id="plaintext" style="word-wrap:break-word;">
+                        @Model.plaintext
+                    </h5>
+                }
+            </div>
+        </div>
+
+       <div class="row">
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-primary">Decrypt</button>
+            </div>
+        </div>
+    </form>
+</div>

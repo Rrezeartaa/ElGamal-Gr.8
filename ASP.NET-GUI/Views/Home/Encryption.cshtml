@@ -1,0 +1,68 @@
+@* @{
+    ViewData["Title"] = "Enkriptimi / Dekriptimi";
+}
+<h1>@ViewData["Title"]</h1> *@
+
+@* @model AES_Encryption.Models.AESModel *@
+
+@{
+    ViewBag.Title = "Enkriptimi";
+}
+<style>
+   
+    .jumbo {
+        background-image: url(https://news.sophos.com/wp-content/uploads/2018/04/shutterstock_591206291.jpg?w=640);
+        background-size: cover;
+        color: white;
+        height:46px;
+        border-radius:10px;
+    }
+   
+</style>
+<div class="container-fluid">
+    <div class="jumbo">
+        <h1 class="text-center">@ViewBag.Title</h1>
+    </div> <br/>
+    <form action="Encryption" method="post">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="plaintext">Plaintext</label>
+                    <textarea class="form-control" id="plaintext" name="plaintext" rows="3" aria-describedby="plainError">
+</textarea>
+                    <small id="plainError" style="color:darkred">
+                        @if (Model != null)
+                        {
+                            @Model.plainError
+                        }
+                    </small>
+                
+                    <button type="submit" class="btn btn-primary mt-2">Encrypt</button>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                @if (Model != null && @Model.ciphertext != null)
+                {
+                    <label for="ciphertext">Ciphertext</label>
+                    <h5 id="ciphertext" style="word-wrap:break-word;">
+                        @Model.ciphertext
+                    </h5>
+                }
+            </div>
+        </div>
+
+       <div class="row">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-8">
+                @if (Model != null && @Model.potential_plaintext != null)
+                {
+                    <label for="ciphertext">Plaintext Tested:</label>
+                    <h5 id="ciphertext" style="word-wrap:break-word;">
+                        @Model.potential_plaintext
+                    </h5>
+                }
+            </div>
+        </div>
+    </form>
+</div>

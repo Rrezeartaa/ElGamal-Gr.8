@@ -4,7 +4,7 @@ using System.Numerics;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace ConsoleApplication.Classes
+namespace ASP.NET_GUI.Classes
 {
     public class ElGamalDecrypt : ElGamalCipher
     {

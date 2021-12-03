@@ -1,7 +1,7 @@
 using System;
 using System.Security.Cryptography;
 
-namespace ConsoleApplication.Classes
+namespace ASP.NET_GUI.Classes
 {
     public class ElGamalManagement : Parameters
     {

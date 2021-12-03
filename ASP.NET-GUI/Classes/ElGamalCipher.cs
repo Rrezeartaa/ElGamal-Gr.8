@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace ConsoleApplication.Classes
+namespace ASP.NET_GUI.Classes
 {
     // Klasa e cila perdoret per bazat ENC/DEC dhe per te ndare te dhenat ne blloqe
     public abstract class ElGamalCipher : ElGamalManagement
