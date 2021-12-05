@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Security.Cryptography;
+using System.Text;
+using ConsoleApplication.Classes;
 
-namespace ElGamal_Gr._8
+namespace ConsoleApplication
 {
     class Program
     {
@@ -17,6 +19,9 @@ namespace ElGamal_Gr._8
             byte[] x_session_key = x_rijndael.Key;
 
             Console.WriteLine("Session key generated: ");
+
+            Console.WriteLine(Convert.ToBase64String(x_session_key));
+
             foreach (var b in x_session_key)
             {
                 Console.Write("{0:X2} ", b);
@@ -27,13 +32,15 @@ namespace ElGamal_Gr._8
 
             ElGamalOAEPKeyExchangeFormatter x_formatter = new ElGamalOAEPKeyExchangeFormatter();
 
-            //instancen kemi krijuar per te perdorur kur enkripton te dhenat kryesore te sesionit
+            //instancen e kemi krijuar per te perdorur kur enkripton te dhenat kryesore te sesionit
             x_formatter.SetKey(x_elgamal);
 
-            //enkriptoni celesin e sesionit me formater
+            //enkriptoni celesin e sesionit me formatter
             byte[] x_exchange_data = x_formatter.CreateKeyExchange(x_session_key);
 
             Console.WriteLine("\nData to be exchanged: ");
+
+            Console.WriteLine(Convert.ToBase64String(x_exchange_data));
 
             //shkruan te dhenat e enkriptuara
             foreach (byte b in x_exchange_data)
@@ -47,6 +54,8 @@ namespace ElGamal_Gr._8
             byte[] x_session_key_deformatted = x_deformatter.DecryptKeyExchange(x_exchange_data);
 
             Console.WriteLine("\nSession key retrived: ");
+
+            Console.WriteLine(Convert.ToBase64String(x_session_key_deformatted));
 
             foreach (var b in x_session_key_deformatted)
             {

@@ -54,7 +54,7 @@ namespace ConsoleApplication.Classes
         private byte[] o_lhash
           = new BigInteger("da39a3ee5e6b4b0d3255bfef95601890afd80709", 16).getBytes();
 
-        //krijon nje memory stream  per te mbajtur te padded data
+        //krijon nje memory stream per te mbajtur padded data
         private byte[] CreateOAEPPaddedData(byte[] p_data)
         {
             MemoryStream x_stream = new MemoryStream();
