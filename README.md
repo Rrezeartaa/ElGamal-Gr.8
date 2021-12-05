@@ -4,7 +4,7 @@
 
 Në repository është përfshirë një .NET Standard library që mund të shtohet si referencë në projektet e .NET Framework apo edhe .NET Core për mundësimin e shkëmbimit të çelësave sipas ElGamal.
 
-Kjo librari e klasave në këtë projekt përveç se në Console është përdorur edhe në GUI për enkriptim dhe dekriptim të mesazheve sipas ElGamal.
+Kjo librari e klasave në këtë projekt përveç se në Console është përdorur edhe në GUI për enkriptim dhe dekriptim të mesazheve sipas ElGamal. GUI është zhvilluar përmes framework-ut ASP.NET.
 
 ## Referencat
 
