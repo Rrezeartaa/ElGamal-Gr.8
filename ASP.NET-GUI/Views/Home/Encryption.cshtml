@@ -1,12 +1,5 @@
-@* @{
-    ViewData["Title"] = "Enkriptimi / Dekriptimi";
-}
-<h1>@ViewData["Title"]</h1> *@
-
-@* @model AES_Encryption.Models.AESModel *@
-
 @{
-    ViewBag.Title = "Enkriptimi";
+    ViewBag.Title = "Enkriptimi / Dekriptimi";
 }
 
 <style>
@@ -15,8 +8,8 @@
         background-image: url(https://news.sophos.com/wp-content/uploads/2018/04/shutterstock_591206291.jpg?w=640);
         background-size: cover;
         color: white;
-        height:46px;
-        border-radius:10px;
+        height: 46px;
+        border-radius: 10px;
     }
    
 </style>
@@ -63,20 +56,6 @@
                     <label for="potential_plaintext">Plaintext Tested:</label>
                     <h5 id="potential_plaintext" style="word-wrap:break-word;">
                         @Model.potential_plaintext
-                    </h5>
-                }
-            </div>
-        </div>
-
-         <div class="row">
-            <div class="col-sm-4">
-            </div>
-            <div class="col-sm-8">
-                @if (Model != null && @Model.xml_string != null)
-                {
-                    <label for="xml_string">XML String:</label>
-                    <h5 id="xml_string" style="word-wrap:break-word;">
-                        @Model.xml_string
                     </h5>
                 }
             </div>

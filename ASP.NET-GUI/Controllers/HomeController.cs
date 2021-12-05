@@ -55,9 +55,6 @@ namespace ASP.NET_GUI.Controllers
                 // vendosja e madhesise se celesit
                 _parameters.KeySize = 384;
 
-                // ekstraktimi i xml string
-                string xml_string = _parameters.ToXmlString(true);
-
                 Parameters encrypt = new ElGamalManagement();
         
                 encrypt.FromXmlString(_parameters.ToXmlString(false));
@@ -71,7 +68,6 @@ namespace ASP.NET_GUI.Controllers
 
                 encryptModel.plaintext = Encoding.UTF8.GetString(plaintexti);
                 encryptModel.ciphertext = Convert.ToBase64String(ciphertext);
-                encryptModel.xml_string = xml_string;
                 encryptModel.plainError = "";
                 encryptModel.potential_plaintext = Encoding.UTF8.GetString(potential_plaintext).TrimEnd('\0');
 

@@ -10,8 +10,6 @@ namespace ASP.NET_GUI.Models
 
         public string ciphertext { get; set; }
 
-        public string xml_string { get; set; }
-
         public string parameters { get; set; }
 
         public string plainError { get; set; }
